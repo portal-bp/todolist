@@ -1,0 +1,25 @@
+{
+  "todolistApp": {
+    "todoList": {
+      "home": {
+        "title": "Todo Lists",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Създайте нов Todo List",
+        "createOrEditLabel": "Създайте или редактирайте Todo List",
+        "notFound": "Todo Lists не са намерени"
+      },
+      "created": "Създаден е нов Todo List с идентификатор {{ param }}",
+      "updated": "Todo List с идентификатор {{ param }} e oбновен",
+      "deleted": "Todo List с идентификатор {{ param }} е изтрит",
+      "delete": {
+        "question": "Наистина ли искате да изтриете Todo List {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo List"
+      },
+      "id": "ID",
+      "title": "Title",
+      "user": "User"
+    }
+  }
+}
