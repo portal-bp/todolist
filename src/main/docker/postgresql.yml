@@ -7,7 +7,7 @@ services:
     #   - ~/volumes/jhipster/todolist/postgresql/:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=todolist
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=politik
       - POSTGRES_HOST_AUTH_METHOD=trust
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
