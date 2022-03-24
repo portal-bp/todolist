@@ -9,6 +9,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'todolistApp.todoList.home.title' },
         loadChildren: () => import('./todo-list/todo-list.module').then(m => m.TodoListModule),
       },
+      {
+        path: 'todo-list-item',
+        data: { pageTitle: 'todolistApp.todoListItem.home.title' },
+        loadChildren: () => import('./todo-list-item/todo-list-item.module').then(m => m.TodoListItemModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

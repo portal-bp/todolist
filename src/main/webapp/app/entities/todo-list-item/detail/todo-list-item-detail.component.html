@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="todoListItem">
+      <h2 data-cy="todoListItemDetailsHeading"><span jhiTranslate="todolistApp.todoListItem.detail.title">Todo List Item</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ todoListItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="todolistApp.todoListItem.description">Description</span></dt>
+        <dd>
+          <span>{{ todoListItem.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="todolistApp.todoListItem.done">Done</span></dt>
+        <dd>
+          <span>{{ todoListItem.done }}</span>
+        </dd>
+        <dt><span jhiTranslate="todolistApp.todoListItem.todoList">Todo List</span></dt>
+        <dd>
+          <div *ngIf="todoListItem.todoList">
+            <a [routerLink]="['/todo-list', todoListItem.todoList?.id, 'view']">{{ todoListItem.todoList?.title }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/todo-list-item', todoListItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
