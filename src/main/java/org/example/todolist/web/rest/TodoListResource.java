@@ -7,9 +7,13 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import org.example.todolist.domain.User;
 import org.example.todolist.repository.TodoListRepository;
 import org.example.todolist.service.TodoListService;
+import org.example.todolist.service.UserService;
+import org.example.todolist.service.dto.AdminUserDTO;
 import org.example.todolist.service.dto.TodoListDTO;
+import org.example.todolist.service.dto.UserDTO;
 import org.example.todolist.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,9 +47,12 @@ public class TodoListResource {
 
     private final TodoListRepository todoListRepository;
 
-    public TodoListResource(TodoListService todoListService, TodoListRepository todoListRepository) {
+    private final UserService userService;
+
+    public TodoListResource(TodoListService todoListService, TodoListRepository todoListRepository, UserService userService) {
         this.todoListService = todoListService;
         this.todoListRepository = todoListRepository;
+        this.userService = userService;
     }
 
     /**
@@ -61,6 +68,8 @@ public class TodoListResource {
         if (todoListDTO.getId() != null) {
             throw new BadRequestAlertException("A new todoList cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        todoListDTO.setUser(getUserDTO());
+
         TodoListDTO result = todoListService.save(todoListDTO);
         return ResponseEntity
             .created(new URI("/api/todo-lists/" + result.getId()))
@@ -94,6 +103,8 @@ public class TodoListResource {
         if (!todoListRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
+
+        todoListDTO.setUser(getUserDTO());
 
         TodoListDTO result = todoListService.save(todoListDTO);
         return ResponseEntity
@@ -188,5 +199,16 @@ public class TodoListResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * @return {@link UserDTO} for the currently logged user
+     * @throws BadRequestAlertException if logged in user can't be obtained.
+     */
+    private UserDTO getUserDTO() {
+        return userService
+            .getUserWithAuthorities()
+            .map(UserDTO::new)
+            .orElseThrow(() -> new BadRequestAlertException("User logged out or session expired", ENTITY_NAME, "usernotfound"));
     }
 }

@@ -130,6 +130,7 @@
     "userexists": "Потребителското име вече се използва!",
     "emailexists": "Имейлът вече се използва!",
     "idexists": "Новият обект {{ entityName }} не може вече да има ID",
+    "usernotfound": "Не е намер потребител. Моля влезте отново!",
     "idnull": "Невалидно ID",
     "idinvalid": "Invalid Id",
     "idnotfound": "ID cannot be found",
