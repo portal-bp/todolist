@@ -16,6 +16,7 @@ import { TodoListService } from 'app/entities/todo-list/service/todo-list.servic
 })
 export class TodoListItemUpdateComponent implements OnInit {
   isSaving = false;
+  isNew = false;
 
   todoListsSharedCollection: ITodoList[] = [];
 
@@ -36,7 +37,7 @@ export class TodoListItemUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ todoListItem }) => {
       this.updateForm(todoListItem);
-
+      this.isNew = todoListItem.id === undefined;
       this.loadRelationshipsOptions();
     });
   }

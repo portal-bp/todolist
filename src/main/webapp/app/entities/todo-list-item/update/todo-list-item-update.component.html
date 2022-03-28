@@ -51,7 +51,7 @@
           <input type="checkbox" class="form-check" name="done" id="field_done" data-cy="done" formControlName="done" />
         </div>
 
-        <div class="row mb-3">
+        <div *ngIf="isNew" class="row mb-3">
           <label class="form-label" jhiTranslate="todolistApp.todoListItem.todoList" for="field_todoList">Todo List</label>
           <select class="form-control" id="field_todoList" data-cy="todoList" name="todoList" formControlName="todoList">
             <option *ngIf="!editForm.get('todoList')!.value" [ngValue]="null" selected></option>
@@ -63,7 +63,9 @@
             </option>
           </select>
         </div>
-        <div *ngIf="editForm.get(['todoList'])!.invalid && (editForm.get(['todoList'])!.dirty || editForm.get(['todoList'])!.touched)">
+        <div
+          *ngIf="isNew && editForm.get(['todoList'])!.invalid && (editForm.get(['todoList'])!.dirty || editForm.get(['todoList'])!.touched)"
+        >
           <small
             class="form-text text-danger"
             *ngIf="editForm.get(['todoList'])?.errors?.required"
