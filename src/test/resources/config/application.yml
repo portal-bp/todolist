@@ -47,7 +47,14 @@ spring:
   liquibase:
     contexts: test
   mail:
-    host: localhost
+    host: smtp.sendgrid.net
+    port: 587
+    username: ${SENDGRID_USERNAME}
+    password: ${SENDGRID_PASSWORD}
+    protocol: smtp
+    tls: false
+    auth: true
+    from: rocky-earth-57562.herokuapp.com
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
