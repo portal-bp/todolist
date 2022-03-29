@@ -51,10 +51,6 @@ spring:
     port: 2525
     username: '96d002805eb5aa'
     password: '38d5427a6ab03f'
-    protocol: smtp
-    tls: true
-    auth: true
-    from: rocky-earth-57562.herokuapp.com
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
