@@ -1,8 +1,12 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-todo-list-heading" data-cy="TodoListCreateUpdateHeading" jhiTranslate="todolistApp.todoList.home.createOrEditLabel">
-        Create or edit a Todo List
+      <h2
+        id="jhi-todo-list-item-share-heading"
+        data-cy="TodoListItemShareCreateUpdateHeading"
+        jhiTranslate="todolistApp.todoListItemShare.home.createOrEditLabel"
+      >
+        Create or edit a Todo List Item Share
       </h2>
 
       <div>
@@ -14,27 +18,26 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="todolistApp.todoList.title" for="field_title">Title</label>
-          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
-          <div *ngIf="editForm.get('title')!.invalid && (editForm.get('title')!.dirty || editForm.get('title')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('title')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('title')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 128 }"
+          <label class="form-label" jhiTranslate="todolistApp.todoListItemShare.todoListItem" for="field_todoListItem"
+            >Todo List Item</label
+          >
+          <select class="form-control" id="field_todoListItem" data-cy="todoListItem" name="todoListItem" formControlName="todoListItem">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                todoListItemOption.id === editForm.get('todoListItem')!.value?.id ? editForm.get('todoListItem')!.value : todoListItemOption
+              "
+              *ngFor="let todoListItemOption of todoListItemsCollection; trackBy: trackTodoListItemById"
             >
-              This field cannot be longer than 128 characters.
-            </small>
-          </div>
+              {{ todoListItemOption.description }}
+            </option>
+          </select>
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="todolistApp.todoList.user" for="field_user">User</label>
+          <label class="form-label" jhiTranslate="todolistApp.todoListItemShare.user" for="field_user">User</label>
           <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
-            <option *ngIf="!editForm.get('user')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="null"></option>
             <option
               [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption"
               *ngFor="let userOption of usersSharedCollection; trackBy: trackUserById"
@@ -42,11 +45,6 @@
               {{ userOption.login }}
             </option>
           </select>
-        </div>
-        <div *ngIf="editForm.get(['user'])!.invalid && (editForm.get(['user'])!.dirty || editForm.get(['user'])!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get(['user'])?.errors?.required" jhiTranslate="entity.validation.required">
-            This field is required.
-          </small>
         </div>
       </div>
 

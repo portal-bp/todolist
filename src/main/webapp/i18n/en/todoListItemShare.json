@@ -1,0 +1,25 @@
+{
+  "todolistApp": {
+    "todoListItemShare": {
+      "home": {
+        "title": "Todo List Item Shares",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Todo List Item Share",
+        "createOrEditLabel": "Create or edit a Todo List Item Share",
+        "notFound": "No Todo List Item Shares found"
+      },
+      "created": "A new Todo List Item Share is created with identifier {{ param }}",
+      "updated": "A Todo List Item Share is updated with identifier {{ param }}",
+      "deleted": "A Todo List Item Share is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Todo List Item Share {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo List Item Share"
+      },
+      "id": "ID",
+      "todoListItem": "Todo List Item",
+      "user": "User"
+    }
+  }
+}

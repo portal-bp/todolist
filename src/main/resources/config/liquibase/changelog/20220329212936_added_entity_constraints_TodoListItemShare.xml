@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity TodoListItemShare.
+    -->
+    <changeSet id="20220329212936-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="todo_list_item_id"
+                                 baseTableName="todo_list_item_share"
+                                 constraintName="fk_todo_list_item_share__todo_list_item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="todo_list_item"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="todo_list_item_share"
+                                 constraintName="fk_todo_list_item_share__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

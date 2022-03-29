@@ -9,6 +9,9 @@
         "main": "Обекти",
         "todoList": "Списък",
         "todoListItem": "Задачи",
+        "todoListItemShare": "Todo List Item Share",
+        "todoList": "Todo List",
+        "todoListItem": "Todo List Item",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

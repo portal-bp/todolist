@@ -9,6 +9,7 @@
         "main": "Entities",
         "todoList": "Todo List",
         "todoListItem": "Todo List Item",
+        "todoListItemShare": "Todo List Item Share",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

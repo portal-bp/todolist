@@ -1,0 +1,25 @@
+{
+  "todolistApp": {
+    "todoListItemShare": {
+      "home": {
+        "title": "Todo List Item Shares",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Създайте нов Todo List Item Share",
+        "createOrEditLabel": "Създайте или редактирайте Todo List Item Share",
+        "notFound": "Todo List Item Shares не са намерени"
+      },
+      "created": "Създаден е нов Todo List Item Share с идентификатор {{ param }}",
+      "updated": "Todo List Item Share с идентификатор {{ param }} e oбновен",
+      "deleted": "Todo List Item Share с идентификатор {{ param }} е изтрит",
+      "delete": {
+        "question": "Наистина ли искате да изтриете Todo List Item Share {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo List Item Share"
+      },
+      "id": "ID",
+      "todoListItem": "Todo List Item",
+      "user": "User"
+    }
+  }
+}

@@ -22,6 +22,7 @@ export class TodoListUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     title: [null, [Validators.required, Validators.maxLength(128)]],
+    user: [null, Validators.required],
   });
 
   constructor(
@@ -34,6 +35,8 @@ export class TodoListUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ todoList }) => {
       this.updateForm(todoList);
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -84,11 +87,20 @@ export class TodoListUpdateComponent implements OnInit {
     this.usersSharedCollection = this.userService.addUserToCollectionIfMissing(this.usersSharedCollection, todoList.user);
   }
 
+  protected loadRelationshipsOptions(): void {
+    this.userService
+      .query()
+      .pipe(map((res: HttpResponse<IUser[]>) => res.body ?? []))
+      .pipe(map((users: IUser[]) => this.userService.addUserToCollectionIfMissing(users, this.editForm.get('user')!.value)))
+      .subscribe((users: IUser[]) => (this.usersSharedCollection = users));
+  }
+
   protected createFromForm(): ITodoList {
     return {
       ...new TodoList(),
       id: this.editForm.get(['id'])!.value,
       title: this.editForm.get(['title'])!.value,
+      user: this.editForm.get(['user'])!.value,
     };
   }
 }

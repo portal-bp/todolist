@@ -1,0 +1,28 @@
+{
+  "changelogDate": "20220329212936",
+  "fields": [],
+  "name": "TodoListItemShare",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "id": false,
+      "otherEntityField": "description",
+      "otherEntityName": "todoListItem",
+      "otherEntityRelationshipName": "todoListItemShare",
+      "ownerSide": true,
+      "relationshipName": "todoListItem",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "id": false,
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "todoListItemShare",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

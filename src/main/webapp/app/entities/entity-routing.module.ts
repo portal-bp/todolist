@@ -14,6 +14,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'todolistApp.todoListItem.home.title' },
         loadChildren: () => import('./todo-list-item/todo-list-item.module').then(m => m.TodoListItemModule),
       },
+      {
+        path: 'todo-list-item-share',
+        data: { pageTitle: 'todolistApp.todoListItemShare.home.title' },
+        loadChildren: () => import('./todo-list-item-share/todo-list-item-share.module').then(m => m.TodoListItemShareModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

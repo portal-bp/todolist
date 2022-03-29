@@ -11,4 +11,10 @@ import org.mapstruct.*;
 public interface TodoListItemMapper extends EntityMapper<TodoListItemDTO, TodoListItem> {
     @Mapping(target = "todoList", source = "todoList", qualifiedByName = "title")
     TodoListItemDTO toDto(TodoListItem s);
+
+    @Named("description")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "description", source = "description")
+    TodoListItemDTO toDtoDescription(TodoListItem todoListItem);
 }
