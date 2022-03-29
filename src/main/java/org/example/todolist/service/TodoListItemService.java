@@ -51,6 +51,15 @@ public interface TodoListItemService {
     Page<TodoListItemDTO> findByUserIsCurrentUser(Pageable pageable);
 
     /**
+     * Get all the todoLists with eager load of many-to-one relationships.
+     *
+     * @param pageable the pagination information.
+     * @param todoListId items belonging to the id.
+     * @return the list of entities.
+     */
+    Page<TodoListItemDTO> findByUserIsCurrentUserAndTodoListId(Pageable pageable, Long todoListId);
+
+    /**
      * Get the "id" todoListItem.
      *
      * @param id the id of the entity.

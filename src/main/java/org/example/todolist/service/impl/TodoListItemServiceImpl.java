@@ -71,6 +71,12 @@ public class TodoListItemServiceImpl implements TodoListItemService {
     }
 
     @Override
+    public Page<TodoListItemDTO> findByUserIsCurrentUserAndTodoListId(Pageable pageable, Long todoListId) {
+        log.debug("Request to retrieve TodoListItem by TodoListItemId : {}", todoListId);
+        return todoListItemRepository.findByUserIsCurrentUserAndTodoListId(pageable, todoListId).map(todoListItemMapper::toDto);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Optional<TodoListItemDTO> findOne(Long id) {
         log.debug("Request to get TodoListItem : {}", id);

@@ -23,6 +23,7 @@ export class TodoListItemComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  todoListId?: number = undefined;
 
   constructor(
     protected todoListItemService: TodoListItemService,
@@ -31,16 +32,19 @@ export class TodoListItemComponent implements OnInit {
     protected modalService: NgbModal
   ) {}
 
-  loadPage(page?: number, dontNavigate?: boolean): void {
+  loadPage(page?: number, dontNavigate?: boolean, todoListId?: number): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
 
     this.todoListItemService
-      .query({
-        page: pageToLoad - 1,
-        size: this.itemsPerPage,
-        sort: this.sort(),
-      })
+      .query(
+        {
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+        },
+        todoListId
+      )
       .subscribe({
         next: (res: HttpResponse<ITodoListItem[]>) => {
           this.isLoading = false;
@@ -82,16 +86,19 @@ export class TodoListItemComponent implements OnInit {
 
   protected handleNavigation(): void {
     combineLatest([this.activatedRoute.data, this.activatedRoute.queryParamMap]).subscribe(([data, params]) => {
-      const page = params.get('page');
-      const pageNumber = +(page ?? 1);
-      const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
-      const predicate = sort[0];
-      const ascending = sort[1] === ASC;
-      if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
-        this.predicate = predicate;
-        this.ascending = ascending;
-        this.loadPage(pageNumber, true);
-      }
+      this.activatedRoute.params.subscribe(parameter => {
+        this.todoListId = parameter['todoListId'];
+        const page = params.get('page');
+        const pageNumber = +(page ?? 1);
+        const sort = (params.get(SORT) ?? data['defaultSort']).split(',');
+        const predicate = sort[0];
+        const ascending = sort[1] === ASC;
+        if (pageNumber !== this.page || predicate !== this.predicate || ascending !== this.ascending) {
+          this.predicate = predicate;
+          this.ascending = ascending;
+          this.loadPage(pageNumber, true, this.todoListId);
+        }
+      });
     });
   }
 

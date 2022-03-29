@@ -38,6 +38,16 @@ public interface TodoListItemRepository extends JpaRepository<TodoListItem, Long
     Page<TodoListItem> findByUserIsCurrentUser(Pageable pageable);
 
     @Query(
+        value = "select todoListItem from TodoListItem todoListItem LEFT JOIN TodoList todoList " +
+        "ON todoListItem.todoList.id = todoList.id and todoListItem.todoList.id = :todoListId " +
+        "where todoList.user.login = ?#{principal.username}",
+        countQuery = "select count(distinct todoListItem) from TodoListItem todoListItem LEFT JOIN TodoList todoList " +
+        "ON todoListItem.todoList.id = todoList.id and todoListItem.todoList.id = :todoListId " +
+        "where todoList.user.login = ?#{principal.username}"
+    )
+    Page<TodoListItem> findByUserIsCurrentUserAndTodoListId(Pageable pageable, @Param("todoListId") Long todoListId);
+
+    @Query(
         value = "select distinct todoListItem from TodoListItem todoListItem left join fetch todoListItem.todoList",
         countQuery = "select count(distinct todoListItem) from TodoListItem todoListItem"
     )

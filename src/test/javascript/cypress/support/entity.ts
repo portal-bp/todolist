@@ -13,6 +13,7 @@ export const entityCreateButtonSelector = '[data-cy="entityCreateButton"]';
 export const entityCreateSaveButtonSelector = '[data-cy="entityCreateSaveButton"]';
 export const entityCreateCancelButtonSelector = '[data-cy="entityCreateCancelButton"]';
 export const entityDetailsButtonSelector = '[data-cy="entityDetailsButton"]'; // can return multiple elements
+export const entityListButtonSelector = '[data-cy="entityListButton"]';
 export const entityDetailsBackButtonSelector = '[data-cy="entityDetailsBackButton"]';
 export const entityEditButtonSelector = '[data-cy="entityEditButton"]';
 export const entityDeleteButtonSelector = '[data-cy="entityDeleteButton"]';

@@ -55,6 +55,16 @@
             <div class="btn-group">
               <button
                 type="submit"
+                [routerLink]="['/todo-list-item/list', todoList.id]"
+                class="btn btn-group btn-sm"
+                data-cy="entityListButton"
+              >
+                <fa-icon icon="list"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.items">Items</span>
+              </button>
+
+              <button
+                type="submit"
                 [routerLink]="['/todo-list', todoList.id, 'view']"
                 class="btn btn-info btn-sm"
                 data-cy="entityDetailsButton"

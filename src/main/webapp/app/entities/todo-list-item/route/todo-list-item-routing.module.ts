@@ -17,6 +17,14 @@ const todoListItemRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
+    path: 'list/:todoListId',
+    component: TodoListItemComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
     path: ':id/view',
     component: TodoListItemDetailComponent,
     resolve: {

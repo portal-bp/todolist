@@ -36,9 +36,12 @@ export class TodoListItemService {
     return this.http.get<ITodoListItem>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
+  query(req?: any, todoListId?: number): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<ITodoListItem[]>(this.resourceUrl, { params: options, observe: 'response' });
+    if (!todoListId) {
+      return this.http.get<ITodoListItem[]>(this.resourceUrl, { params: options, observe: 'response' });
+    }
+    return this.http.get<ITodoListItem[]>(`${this.resourceUrl}/list/${todoListId}`, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
