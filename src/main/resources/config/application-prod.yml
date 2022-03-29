@@ -47,12 +47,9 @@ spring:
   mail:
     host: smtp.mailtrap.io
     port: 2525
-    username: '96d002805eb5aa'
-    password: '38d5427a6ab03f'
+    username: 'aaf59c4258b1ad'
+    password: '4e7c5a829266a5'
     protocol: smtp
-    tls: true
-    auth: true
-    from: rocky-earth-57562.herokuapp.com
   thymeleaf:
     cache: true
   sleuth:
