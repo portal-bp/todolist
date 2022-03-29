@@ -47,12 +47,12 @@ spring:
   liquibase:
     contexts: test
   mail:
-    host: smtp.sendgrid.net
-    port: 587
-    username: ${SENDGRID_USERNAME}
-    password: ${SENDGRID_PASSWORD}
+    host: smtp.mailtrap.io
+    port: 2525
+    username: '96d002805eb5aa'
+    password: '38d5427a6ab03f'
     protocol: smtp
-    tls: false
+    tls: true
     auth: true
     from: rocky-earth-57562.herokuapp.com
   main:
